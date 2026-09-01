@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. Root Layout Reset & Global Styles
+   1. Fullscreen Canvas Config
    ========================================================================== */
 * {
     box-sizing: border-box;
@@ -7,36 +7,49 @@
     padding: 0;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* ==========================================================================
-   2. Model Viewer Container Customization
-   ========================================================================== */
-model-viewer {
-    width: 90vw;
-    max-width: 800px;
-    height: 70vh;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+html, body {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+model-viewer {
+    width: 100vw;
+    height: 100vh;
+    display: block;
 }
 
 /* ==========================================================================
-   3. AR Prompt & Interaction Cleanup (Total Invisible Fail-Safe)
+   2. Absolute Hand Prevention Override
    ========================================================================== */
 #ar-prompt, 
 .ar-prompt,
-[slot="ar-prompt"] {
+[slot="ar-prompt"],
+#interaction-prompt,
+.interaction-prompt {
     display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
+}
+
+/* ==========================================================================
+   4. Universal Cursor Override (Removes Grabby Hand Hand Everywhere)
+   ========================================================================== */
+/* Targets the main custom element element wrapper */
+model-viewer {
+    cursor: default !important;
+}
+
+/* Forces everything hidden deep within Google's Shadow DOM to stay an arrow */
+model-viewer * {
+    cursor: default !important;
+}
+
+/* Overrides any dynamically injected active grab/dragging styles */
+model-viewer::part(interaction-canvas),
+model-viewer::part(interaction-canvas):active,
+model-viewer::part(interaction-canvas):focus {
+    cursor: default !important;
 }

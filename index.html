@@ -13,9 +13,9 @@
 </head>
 <body>
 
-    <!-- Clean, semantic HTML configuration -->
     <model-viewer 
-        alt="GlasperlenShoe" 
+        id="shoeViewer"
+        alt="Glasperlen Shoe" 
         src="assets/GlasperlenShoe.glb" 
         poster="assets/poster.webp"
         ar 
@@ -25,6 +25,31 @@
         interaction-prompt="none"
         interpolation-decay="200">
     </model-viewer>
+
+    <!-- 1. JAVASCRIPT FORCE OVERRIDE TO PIERCE THE SHADOW DOM -->
+    <script>
+    const viewer = document.getElementById('shoeViewer');
+
+    viewer.addEventListener('load', () => {
+        const shadowRoot = viewer.shadowRoot;
+        if (shadowRoot) {
+            const internalElements = shadowRoot.querySelectorAll('*');
+
+            // Set cursor to 'none' to make the arrow completely invisible
+            internalElements.forEach(el => {
+                el.style.setProperty('cursor', 'none', 'important');
+            });
+
+            // Prevent Google from showing the arrow again when clicked
+            viewer.addEventListener('mousedown', () => {
+                internalElements.forEach(el => el.style.setProperty('cursor', 'none', 'important'));
+            });
+            viewer.addEventListener('mouseup', () => {
+                internalElements.forEach(el => el.style.setProperty('cursor', 'none', 'important'));
+            });
+        }
+    });
+</script>
 
 </body>
 </html>

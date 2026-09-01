@@ -1,6 +1,3 @@
-/* ==========================================================================
-   1. Fullscreen Canvas Config
-   ========================================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,38 +15,9 @@ model-viewer {
     width: 100vw;
     height: 100vh;
     display: block;
+    cursor: default !important; /* Forces outer element cursor boundary */
 }
 
-/* ==========================================================================
-   2. Absolute Hand Prevention Override
-   ========================================================================== */
-#ar-prompt, 
-.ar-prompt,
-[slot="ar-prompt"],
-#interaction-prompt,
-.interaction-prompt {
+#ar-prompt, .ar-prompt, [slot="ar-prompt"] {
     display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-}
-
-/* ==========================================================================
-   4. Universal Cursor Override (Removes Grabby Hand Hand Everywhere)
-   ========================================================================== */
-/* Targets the main custom element element wrapper */
-model-viewer {
-    cursor: default !important;
-}
-
-/* Forces everything hidden deep within Google's Shadow DOM to stay an arrow */
-model-viewer * {
-    cursor: default !important;
-}
-
-/* Overrides any dynamically injected active grab/dragging styles */
-model-viewer::part(interaction-canvas),
-model-viewer::part(interaction-canvas):active,
-model-viewer::part(interaction-canvas):focus {
-    cursor: default !important;
 }

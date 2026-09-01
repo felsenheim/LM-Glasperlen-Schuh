@@ -1,23 +1,37 @@
-<model-viewer 
-    src="assets/Glasperlen shoe.glb" 
-    poster="assets/poster.webp"
-    ar 
-    ar-modes="webxr scene-viewer quick-look" 
-    camera-controls 
-    tone-mapping="neutral" 
-    shadow-intensity="1" 
-    interpolation-decay="200" 
-    interaction-prompt="none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 3D Model</title>
     
-    <div class="progress-bar hide" slot="progress-bar">
-        <div class="update-bar"></div>
-    </div>
-    <button slot="ar-button" id="ar-button">
-        View in your space
-    </button>
-    
-    <!-- Transparent AR prompt hand -->
-    <div id="ar-prompt" style="opacity: 0; pointer-events: none;">
-        <img src="https://modelviewer.dev">
-    </div>
-</model-viewer>
+    <!-- 1. REQUIRED GOOGLE SCRIPTS (Crucial for GitHub Pages) -->
+    <script type="module" src="https://googleapis.com"></script>
+</head>
+<body>
+
+    <!-- 2. CORRECTED MODEL VIEWER COMPONENT (Spaces removed from asset name) -->
+    <model-viewer 
+        src="assets/GlasperlenShoe.glb" 
+        poster="assets/poster.webp"
+        ar 
+        ar-modes="webxr scene-viewer quick-look" 
+        camera-controls 
+        tone-mapping="neutral" 
+        shadow-intensity="1" 
+        interpolation-decay="200" 
+        interaction-prompt="none">
+        
+        <div class="progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+        </div>
+        <button slot="ar-button" id="ar-button">
+            View in your space
+        </button>
+        
+        <!-- Transparent AR prompt hand -->
+        <div id="ar-prompt" style="opacity: 0; pointer-events: none;">
+            <img src="https://modelviewer.dev">
+        </div>
+    </model-viewer>
+
+</body>
+</html>
